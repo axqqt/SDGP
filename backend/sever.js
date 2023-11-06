@@ -11,6 +11,8 @@ const home = require("./routes/home");
 const projectID = process.env.projectID;
 const projectKey = process.env.projectKey;
 const Axios = require("axios");
+const tensor = require("./routes/tensor");
+
 
 app.use(express.json());
 app.use(cors());
@@ -20,6 +22,7 @@ if (!fs.existsSync(path.join(__dirname, "public"))) {
 }
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/home", home);
+app.use("/ai",tensor);
 if (!fs.existsSync(path.join(__dirname, "public"))) {
   fs.mkdirSync(path.join(__dirname, "public"));
 }
@@ -44,6 +47,14 @@ app.post("/subi", async (req, res) => {
   const { username } = req.params;
   return res.json({ username: username, secret: "sha256..." });
 });
+
+app.post("/tensor", async (req,res)=>{
+  try{
+    
+  }catch(error){
+    console.error(error);
+  }
+})
 
 app.use("*", (req, res) => {
   res.status(404);

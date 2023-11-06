@@ -17,18 +17,19 @@ export default function Chats(props) {
   return (
     <div className="background">
     <MultiChatSocket
+    
     projectId={chatProps.projectId}
     username={chatProps.username}
     secret={chatProps.secret}
     onConnect={chatProps.onConnect}
     onAuthFail={chatProps.onAuthFail}
-    style={{ height: "100vh" }}
+ 
   />
       <ChatEngine
         projectID={projectId}
         userName={username}
         userSecret={secret}
-        style={{ height: "100vh", backgroundColor: "black" }}
+     
       />
 
 

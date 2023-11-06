@@ -5,14 +5,15 @@ import { useState } from "react";
 const Register = (props) => {
   const onSubmit = (e) => {
     e.preventDefault();
- 
+
     axios
-      .post("http://localhost:8000/newuser", { username: data })
-      .then((r) => props.onAuth({ ...r.data, secret: data }))
+      .post("http://localhost:8000/newuser", { username: username })
+      .then((r) => props.onAuth({ ...r.data, secret: password }))
       .catch((e) => console.log("Auth Error", e));
   };
 
-  const [data,setData] = useState("")
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   return (
     <div className="background">
@@ -20,10 +21,21 @@ const Register = (props) => {
         <div className="form-title">Welcome 👋</div>
         <div className="form-subtitle">Set a username to get started</div>
         <div className="auth">
-          <div className="auth-label">Username</div>
-          <input className="auth-input" name="username" onChange={(e)=>{
-            setData(e.target.value)
-          }} />
+          <input
+            className="auth-input"
+            placeholder="Username"
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
+          />
+          <input
+            className="auth-input"
+            name="password"
+            placeholder="Password"
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+          />
           <button className="auth-button" type="submit">
             Enter
           </button>
